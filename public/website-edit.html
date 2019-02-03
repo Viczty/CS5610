@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Websits List</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.2/css/bootstrap.min.css" integrity="sha384-Smlep5jCw/wG7hdkwQ/Z5nLIefveQRIY9nfy6xoR1uRYBtpZgI6339F5dgvm/e9B" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.1/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <link href="css/style.css" rel="stylesheet"/>
+</head>
+<body>
+<nav class="navbar fixed-top cl-blue-navbar">
+    <div class="row container-fluid">
+        <div class="col-sm-4 d-none d-sm-block">
+            <div class="container-fluid">
+                <div class="float-left">
+                    <a href="website-list.html" class="navbar-text navbar-link cl-text-white">
+                        <span class="fas fa-chevron-left"></span>
+                    </a>
+                    <a class="cl-text-white navbar-brand cl-text-bold" href="#">
+                      Websites
+                    </a>
+                </div>
+
+                <a href="website-new.html" class="navbar-link navbar-text float-right cl-text-white cl-icon-padding">
+                    <span class="fas fa-plus"></span>
+                </a>
+            </div>
+        </div>
+        <div class="col-sm-8 d-none d-sm-block">
+            <div class="container-fluid">
+                <a class="cl-text-white navbar-brand cl-text-bold" href="#">
+                    Edit Websites
+                </a>
+                <a href="website-list.html" class="navbar-link navbar-text float-right cl-text-white cl-icon-padding">
+                    <span class="fas fa-check"></span>
+                </a>
+            </div>
+        </div>
+    </div>
+</nav>
+
+<div class="row container-fluid">
+    <div class="col-sm-4 d-sm-block">
+        <ul class="list-group cl-list-group-borderless">
+            <li class="list-group-item cl-list-item-borderless">
+                <a href="website-edit.html"><span class="fas fa-cog float-right"></span></a>
+                <a href="page-list.html">Blogging App</a>
+            </li>
+            <li class="list-group-item cl-list-item-borderless">
+                <a href="website-edit.html"><span class="fas fa-cog float-right"></span></a>
+                <a href="page-list.html">Address Book App</a>
+            </li>
+            <li class="list-group-item cl-list-item-borderless">
+                <a href="website-edit.html"><span class="fas fa-cog float-right"></span></a>
+                <a href="page-list.html">Script Testing App</a>
+            </li>
+            <li class="list-group-item cl-list-item-borderless">
+                <a href="website-edit.html"><span class="fas fa-cog float-right"></span></a>
+                <a href="page-list.html">Blogger</a>
+            </li>
+        </ul>
+    </div>
+    <div class="col-sm-8">
+        <form>
+            <div class="form-group">
+                <label for="website-name">Website Name</label>
+                <input type="text" class="form-control" id="website-name" placeholder="Blogger">
+            </div>
+            <div class="form-group">
+                <label for="website-description">Website Description</label>
+                <textarea id="website-description" class="form-control" rows="5"
+                          placeholder="Blog is a blog-publishing service."></textarea>
+            </div>
+            <a class="btn btn-danger  btn-block" href="website-list.html">Delete</a>
+        </form>
+    </div>
+</div>
+
+<nav class="navbar fixed-bottom cl-blue-navbar">
+    <div class="container-fuild">
+        <a href="profile.html" class="navbar-link float-right cl-text-white cl-icon-padding">
+            <span class="fas fa-user"></span>
+        </a>
+    </div>
+</nav>
+</body>
+</html>

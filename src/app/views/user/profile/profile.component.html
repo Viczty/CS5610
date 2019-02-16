@@ -1,0 +1,59 @@
+
+<nav class="navbar navbar-light bg-light fixed-top">
+  <div class="container-fluid ">
+
+    <a class="navbar-brand cl-text-white" routerLink="">Profile</a>
+    <a (click)="UpdateUser()" class="navbar-link navbar-text float-right"><span class="fas fa-check"></span></a>
+
+  </div>
+</nav>
+
+<div class="container">
+
+  <div class="form-group">
+    <label for="username">Username</label>
+    <input [(ngModel)]="user.username" type="text" class="form-control" id="username" placeholder="Username">
+  </div>
+  <div class="form-group">
+    <label for="email">Email address</label>
+    <input [(ngModel)]="user.email" type="email" class="form-control" id="email" placeholder="alice@wonderland.com">
+  </div>
+  <div class="form-group">
+    <label for="first-name">First Name</label>
+    <input [(ngModel)]="user.firstName" type="text" class="form-control" id="first-name" placeholder="Alice">
+  </div>
+  <div class="form-group">
+    <label for="last-name">Last Name</label>
+    <input [(ngModel)]="user.lastName" type="text" class="form-control" id="last-name" placeholder="Wonderland">
+  </div>
+
+  <a class="btn btn-primary btn-block" routerLink="/user/123/website">Websites</a>
+  <a class="btn btn-danger  btn-block" routerLink="/login">Logout</a>
+</div>
+
+<nav class="navbar navbar-light bg-light fixed-bottom">
+  <div class="container">
+    <div class="row">
+      <div class="col-xs-3 text-center">
+        <a href="#">
+          <span class="fas fa-check"></span>
+        </a>
+      </div>
+      <div class="col-xs-3 text-center">
+        <a href="#">
+          <span class="fas fa-plus"></span>
+        </a>
+      </div>
+      <div class="col-xs-3 text-center">
+        <a href="#">
+          <span class="fas fa-star"></span>
+        </a>
+      </div>
+      <div class="col-xs-3 text-center">
+        <a href="#">
+          <span class="fas fa-heart"></span>
+        </a>
+      </div>
+    </div>
+  </div>
+</nav>

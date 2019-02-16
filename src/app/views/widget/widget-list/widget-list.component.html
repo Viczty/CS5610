@@ -1,0 +1,57 @@
+<nav class="navbar navbar-light bg-light fixed-top">
+  <div class="container-fluid row">
+
+    <div class="float-left">
+      <a routerLink="/user/123/website/456/page" class="cl-text-black cl-icon-padding">
+          <span class="fas fa-chevron-left">
+          </span>
+      </a>
+      <a class="navbar-brand cl-text-white cl-text-bold" href="#">
+        Widgets
+      </a>
+    </div>
+    <div class="float-right">
+      <a routerLink="/user/123/website/456/page/321/widget/new" class="cl-icon-padding cl-text-black">
+          <span class="fas fa-plus">
+          </span>
+      </a>
+    </div>
+
+  </div>
+</nav>
+
+<div class="container cl-container-padding" *ngFor="let widget of widgets">
+  <div [ngSwitch]="widget['widgetType']">
+    <div class="float-right">
+      <a href="#" class="float-right">
+        <span class="fas fa-bar"></span>
+      </a>
+      <div *ngSwitchCase="'HEADING'"> <app-widget-header></app-widget-header> </div>
+      <div *ngSwitchCase="'YOUTUBE'"> <app-widget-youtube></app-widget-youtube> </div>
+      <div *ngSwitchCase="'IMAGE'"> <app-widget-image></app-widget-image> </div>
+    </div>
+  </div>
+
+</div>
+
+<nav class="navbar navbar-light bg-light fixed-bottom">
+  <div class="container-fluid row">
+    <div class="float-right">
+
+      <a routerLink="/user/123" class="cl-icon-padding">
+        <span class="fas fa-user"></span>
+      </a>
+
+    </div>
+
+    <div class="float-left">
+      <a href="#" class="cl-icon-padding">
+        <span class="fas fa-play"></span>
+      </a>
+      <a href="#" class="cl-icon-padding">
+        <span class="fas fa-eye-open"></span>
+      </a>
+
+    </div>
+  </div>
+</nav>

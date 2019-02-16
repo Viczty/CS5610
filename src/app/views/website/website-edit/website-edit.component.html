@@ -1,0 +1,76 @@
+
+<nav class="navbar fixed-top cl-blue-navbar">
+  <div class="row container-fluid">
+    <div class="col-sm-4 d-none d-sm-block">
+      <div class="container-fluid">
+        <div class="float-left">
+          <a routerLink="/user/123/website" class="navbar-text navbar-link cl-text-white">
+            <span class="fas fa-chevron-left"></span>
+          </a>
+          <a class="cl-text-white navbar-brand cl-text-bold" href="#">
+            Websites
+          </a>
+        </div>
+
+        <a routerLink="/user/123/website/new" class="navbar-link navbar-text float-right cl-text-white cl-icon-padding">
+          <span class="fas fa-plus"></span>
+        </a>
+      </div>
+    </div>
+    <div class="col-sm-8 d-none d-sm-block">
+      <div class="container-fluid">
+        <a class="cl-text-white navbar-brand cl-text-bold" href="#">
+          Edit Websites
+        </a>
+        <a routerLink="/user/123/website" class="navbar-link navbar-text float-right cl-text-white cl-icon-padding">
+          <span class="fas fa-check"></span>
+        </a>
+      </div>
+    </div>
+  </div>
+</nav>
+
+<div class="row container-fluid">
+  <div class="col-sm-4 d-sm-block">
+    <ul class="list-group cl-list-group-borderless">
+      <li class="list-group-item cl-list-item-borderless">
+        <a routerLink="/user/123/website/123"><span class="fas fa-cog float-right"></span></a>
+        <a routerLink="/user/123/website/123/page">Blogging App</a>
+      </li>
+      <li class="list-group-item cl-list-item-borderless">
+        <a routerLink="/user/123/website/234"><span class="fas fa-cog float-right"></span></a>
+        <a routerLink="/user/123/website/234/page">Address Book App</a>
+      </li>
+      <li class="list-group-item cl-list-item-borderless">
+        <a routerLink="/user/123/website"><span class="fas fa-cog float-right"></span></a>
+        <a routerLink="/user/123/website">Script Testing App</a>
+      </li>
+      <li class="list-group-item cl-list-item-borderless">
+        <a routerLink="/user/123/website/456"><span class="fas fa-cog float-right"></span></a>
+        <a routerLink="/user/123/website/456/page">Blogger</a>
+      </li>
+    </ul>
+  </div>
+  <div class="col-sm-8">
+    <form (ngSubmit)="updateWebsite()">
+      <div class="form-group">
+        <label for="website-name">Website Name</label>
+        <input [(ngModel)]="website.name" type="text" class="form-control" id="website-name" placeholder="Blogger">
+      </div>
+      <div class="form-group">
+        <label for="website-description">Website Description</label>
+        <textarea [(ngModel)]="website.description" id="website-description" class="form-control" rows="5"
+                  placeholder="Blog is a blog-publishing service."></textarea>
+      </div>
+      <a class="btn btn-danger  btn-block" routerLink="user/123/website">Delete</a>
+    </form>
+  </div>
+</div>
+
+<nav class="navbar fixed-bottom cl-blue-navbar">
+  <div class="container-fuild">
+    <a routerLink="/user/123" class="navbar-link float-right cl-text-white cl-icon-padding">
+      <span class="fas fa-user"></span>
+    </a>
+  </div>
+</nav>

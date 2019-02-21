@@ -27,11 +27,11 @@
   <form (ngSubmit)="updatePage()">
     <div class="form-group">
       <label for="page-name">Name</label>
-      <input [(ngModel)]="page.name" type="text" class="form-control" id="page-name" placeholder="Page Name">
+      <input [(ngModel)]="page.name" name="name" type="text" class="form-control" id="page-name" placeholder="Page Name">
     </div>
     <div class="form-group">
       <label for="page-title">Title</label>
-      <input [(ngModel)]="page.description" type="text" class="form-control" id="page-title" placeholder="Page Title">
+      <input [(ngModel)]="page.description" name="description" type="text" class="form-control" id="page-title" placeholder="Page Title">
     </div>
   </form>
   <a class="btn btn-danger  btn-block" routerLink="/user/123/website/456/page">Delete</a>

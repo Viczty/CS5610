@@ -34,16 +34,16 @@
   <div class="col-sm-4 d-sm-block">
     <ul class="list-group cl-list-group-borderless">
       <li class="list-group-item cl-list-item-borderless">
-        <a routerLink="/user/123/website/123"><span class="fas fa-cog float-right"></span></a>
-        <a routerLink="/user/123/website/123/page">Blogging App</a>
+        <a routerLink="/user/123/website/456"><span class="fas fa-cog float-right"></span></a>
+        <a routerLink="/user/123/website/456/page">Blogging App</a>
       </li>
       <li class="list-group-item cl-list-item-borderless">
-        <a routerLink="/user/123/website/234"><span class="fas fa-cog float-right"></span></a>
-        <a routerLink="/user/123/website/234/page">Address Book App</a>
+        <a routerLink="/user/123/website/456"><span class="fas fa-cog float-right"></span></a>
+        <a routerLink="/user/123/website/456/page">Address Book App</a>
       </li>
       <li class="list-group-item cl-list-item-borderless">
-        <a routerLink="/user/123/website"><span class="fas fa-cog float-right"></span></a>
-        <a routerLink="/user/123/website">Script Testing App</a>
+        <a routerLink="/user/123/website/456"><span class="fas fa-cog float-right"></span></a>
+        <a routerLink="/user/123/website/456/page">Script Testing App</a>
       </li>
       <li class="list-group-item cl-list-item-borderless">
         <a routerLink="/user/123/website/456"><span class="fas fa-cog float-right"></span></a>
@@ -52,14 +52,14 @@
     </ul>
   </div>
   <div class="col-sm-8">
-    <form (ngSubmit)="updateWebsite()">
+    <form>
       <div class="form-group">
         <label for="website-name">Website Name</label>
-        <input [(ngModel)]="website.name" type="text" class="form-control" id="website-name" placeholder="Blogger">
+        <input [(ngModel)]="website.name" name="name" type="text" class="form-control" id="website-name" placeholder="Blogger">
       </div>
       <div class="form-group">
         <label for="website-description">Website Description</label>
-        <textarea [(ngModel)]="website.description" id="website-description" class="form-control" rows="5"
+        <textarea [(ngModel)]="website.description" name="description" id="website-description" class="form-control" rows="5"
                   placeholder="Blog is a blog-publishing service."></textarea>
       </div>
       <a class="btn btn-danger  btn-block" routerLink="user/123/website">Delete</a>

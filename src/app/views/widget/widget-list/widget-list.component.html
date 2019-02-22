@@ -23,12 +23,12 @@
 <div class="container cl-container-padding" *ngFor="let widget of widgets">
   <div [ngSwitch]="widget['widgetType']">
     <div class="float-right">
-      <a href="#" class="float-right">
-        <span class="fas fa-bar"></span>
+      <a routerLink="./{{widget['_id']}}" class="float-right">
+        <span class="fas fa-plus"></span>
       </a>
-      <div *ngSwitchCase="'HEADING'"> Edit Header </div>
-      <div *ngSwitchCase="'YOUTUBE'"> Edit Youtube </div>
-      <div *ngSwitchCase="'IMAGE'"> Edit Image </div>
+      <div *ngSwitchCase="'HEADING'">{{widget['text']}} </div>
+      <div *ngSwitchCase="'YOUTUBE'"> <iframe width="480" height="315" [src]="byPass(widget['url'])"></iframe></div>
+      <div *ngSwitchCase="'IMAGE'"><img class="img-responsive img-rounded widget-images" src="{{widget['url']}}"></div>
     </div>
   </div>
 

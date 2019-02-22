@@ -496,7 +496,7 @@ var WidgetService = /** @class */ (function () {
             { '_id': '567', 'widgetType': 'HEADING', 'pageId': '321', 'size': 4, 'text': 'Lorem ipsum' },
             {
                 '_id': '678', 'widgetType': 'YOUTUBE', 'pageId': '321', 'width': '100%',
-                'url': 'https://youtu.be/AM2Ivdi9c4E'
+                'url': 'https://www.youtube.com/embed/AM2Ivdi9c4E'
             },
             { '_id': '789', 'widgetType': 'HTML', 'pageId': '321', 'text': '<p>Lorem ipsum</p>' }
         ];
@@ -1270,7 +1270,7 @@ module.exports = "\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<nav class=\"navbar navbar-light bg-light fixed-top\">\n  <div class=\"container-fluid row\">\n\n    <div class=\"navbar-text float-left\">\n      <a routerLink=\"/user/123/website/456/page/321/widget\" class=\"cl-text-black cl-icon-padding\">\n          <span class=\"fas fa-chevron-left\">\n          </span>\n      </a>\n      <a class=\"navbar-brand cl-text-white cl-text-bold\" href=\"#\">\n        Choose Widget\n      </a>\n    </div>\n\n  </div>\n</nav>\n\n<div class=\"container-fluid cl-container-padding\">\n  <ul class=\"list-group cl-list-group-borderless\">\n    <li [ngSwitch]=\"widget.widgetType\">\n      <div *ngSwitchCase=\"'HEADING'\">\n        <app-widget-header></app-widget-header>\n      </div>\n      <div *ngSwitchCase=\"'IMAGE'\">\n        <app-widget-image></app-widget-image>\n      </div>\n      <div *ngSwitchCase=\"'YOUTUBE'\">\n        <app-widget-youtube></app-widget-youtube>\n      </div>\n    </li>\n    <li class=\"list-group-item cl-list-item-borderless\">\n      <a href=\"#\">Label</a>\n    </li>\n    <li class=\"list-group-item cl-list-item-borderless\">\n      <a href=\"#\">HTML</a>\n    </li>\n    <li class=\"list-group-item cl-list-item-borderless\">\n      <a href=\"#\">Text Input</a>\n    </li>\n    <li class=\"list-group-item cl-list-item-borderless\">\n      <a href=\"#\">Link</a>\n    </li>\n    <li class=\"list-group-item cl-list-item-borderless\">\n      <a href=\"#\">Button</a>\n    </li>\n    <li class=\"list-group-item cl-list-item-borderless\">\n      <a href=\"#\">Data Table</a>\n    </li>\n    <li class=\"list-group-item cl-list-item-borderless\">\n      <a href=\"#\">Repeater</a>\n    </li>\n  </ul>\n</div>\n\n<nav class=\"navbar navbar-light bg-light fixed-bottom\">\n  <div class=\"container-fluid row\">\n    <div class=\"float-right\">\n\n      <a routerLink=\"/user/123\" class=\"cl-icon-padding\">\n        <span class=\"fas fa-user\"></span>\n      </a>\n\n    </div>\n  </div>\n</nav>\n"
+module.exports = "<nav class=\"navbar navbar-light bg-light fixed-top\">\n  <div class=\"container-fluid row\">\n\n    <div class=\"navbar-text float-left\">\n      <a routerLink=\"/user/123/website/456/page/321/widget\" class=\"cl-text-black cl-icon-padding\">\n          <span class=\"fas fa-chevron-left\">\n          </span>\n      </a>\n      <a class=\"navbar-brand cl-text-white cl-text-bold\" href=\"#\">\n        Widget Edit\n      </a>\n    </div>\n\n  </div>\n</nav>\n\n<div class=\"container-fluid cl-container-padding\">\n  <ul class=\"list-group cl-list-group-borderless\">\n    <li [ngSwitch]=\"widget.widgetType\">\n      <div *ngSwitchCase=\"'HEADING'\">\n        <app-widget-header></app-widget-header>\n      </div>\n      <div *ngSwitchCase=\"'IMAGE'\">\n        <app-widget-image></app-widget-image>\n      </div>\n      <div *ngSwitchCase=\"'YOUTUBE'\">\n        <app-widget-youtube></app-widget-youtube>\n      </div>\n    </li>\n    <li class=\"list-group-item cl-list-item-borderless\">\n      <a href=\"#\">Label</a>\n    </li>\n    <li class=\"list-group-item cl-list-item-borderless\">\n      <a href=\"#\">HTML</a>\n    </li>\n    <li class=\"list-group-item cl-list-item-borderless\">\n      <a href=\"#\">Text Input</a>\n    </li>\n    <li class=\"list-group-item cl-list-item-borderless\">\n      <a href=\"#\">Link</a>\n    </li>\n    <li class=\"list-group-item cl-list-item-borderless\">\n      <a href=\"#\">Button</a>\n    </li>\n    <li class=\"list-group-item cl-list-item-borderless\">\n      <a href=\"#\">Data Table</a>\n    </li>\n    <li class=\"list-group-item cl-list-item-borderless\">\n      <a href=\"#\">Repeater</a>\n    </li>\n  </ul>\n</div>\n\n<nav class=\"navbar navbar-light bg-light fixed-bottom\">\n  <div class=\"container-fluid row\">\n    <div class=\"float-right\">\n\n      <a routerLink=\"/user/123\" class=\"cl-icon-padding\">\n        <span class=\"fas fa-user\"></span>\n      </a>\n\n    </div>\n  </div>\n</nav>\n"
 
 /***/ }),
 
@@ -1517,7 +1517,7 @@ module.exports = "\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<nav class=\"navbar navbar-light bg-light fixed-top\">\n  <div class=\"container-fluid row\">\n\n    <div class=\"float-left\">\n      <a routerLink=\"/user/123/website/456/page\" class=\"cl-text-black cl-icon-padding\">\n          <span class=\"fas fa-chevron-left\">\n          </span>\n      </a>\n      <a class=\"navbar-brand cl-text-white cl-text-bold\" href=\"#\">\n        Widgets\n      </a>\n    </div>\n    <div class=\"float-right\">\n      <a routerLink=\"/user/123/website/456/page/321/widget/new\" class=\"cl-icon-padding cl-text-black\">\n          <span class=\"fas fa-plus\">\n          </span>\n      </a>\n    </div>\n\n  </div>\n</nav>\n\n<div class=\"container cl-container-padding\" *ngFor=\"let widget of widgets\">\n  <div [ngSwitch]=\"widget['widgetType']\">\n    <div class=\"float-right\">\n      <a href=\"#\" class=\"float-right\">\n        <span class=\"fas fa-bar\"></span>\n      </a>\n      <div *ngSwitchCase=\"'HEADING'\"> Header </div>\n      <div *ngSwitchCase=\"'YOUTUBE'\"> Youtube </div>\n      <div *ngSwitchCase=\"'IMAGE'\"> Image </div>\n    </div>\n  </div>\n\n</div>\n\n<nav class=\"navbar navbar-light bg-light fixed-bottom\">\n  <div class=\"container-fluid row\">\n    <div class=\"float-right\">\n\n      <a routerLink=\"/user/123\" class=\"cl-icon-padding\">\n        <span class=\"fas fa-user\"></span>\n      </a>\n\n    </div>\n\n    <div class=\"float-left\">\n      <a href=\"#\" class=\"cl-icon-padding\">\n        <span class=\"fas fa-play\"></span>\n      </a>\n      <a href=\"#\" class=\"cl-icon-padding\">\n        <span class=\"fas fa-eye-open\"></span>\n      </a>\n\n    </div>\n  </div>\n</nav>\n"
+module.exports = "<nav class=\"navbar navbar-light bg-light fixed-top\">\n  <div class=\"container-fluid row\">\n\n    <div class=\"float-left\">\n      <a routerLink=\"/user/123/website/456/page\" class=\"cl-text-black cl-icon-padding\">\n          <span class=\"fas fa-chevron-left\">\n          </span>\n      </a>\n      <a class=\"navbar-brand cl-text-white cl-text-bold\" href=\"#\">\n        Widgets\n      </a>\n    </div>\n    <div class=\"float-right\">\n      <a routerLink=\"/user/123/website/456/page/321/widget/new\" class=\"cl-icon-padding cl-text-black\">\n          <span class=\"fas fa-plus\">\n          </span>\n      </a>\n    </div>\n\n  </div>\n</nav>\n\n<div class=\"container cl-container-padding\" *ngFor=\"let widget of widgets\">\n  <div [ngSwitch]=\"widget['widgetType']\">\n    <div class=\"float-right\">\n      <a routerLink=\"./{{widget['_id']}}\" class=\"float-right\">\n        <span class=\"fas fa-plus\"></span>\n      </a>\n      <div *ngSwitchCase=\"'HEADING'\">{{widget['text']}} </div>\n      <div *ngSwitchCase=\"'YOUTUBE'\"> <iframe width=\"480\" height=\"315\" [src]=\"byPass(widget['url'])\"></iframe></div>\n      <div *ngSwitchCase=\"'IMAGE'\"><img class=\"img-responsive img-rounded widget-images\" src=\"{{widget['url']}}\"></div>\n    </div>\n  </div>\n\n</div>\n\n<nav class=\"navbar navbar-light bg-light fixed-bottom\">\n  <div class=\"container-fluid row\">\n    <div class=\"float-right\">\n\n      <a routerLink=\"/user/123\" class=\"cl-icon-padding\">\n        <span class=\"fas fa-user\"></span>\n      </a>\n\n    </div>\n\n    <div class=\"float-left\">\n      <a href=\"#\" class=\"cl-icon-padding\">\n        <span class=\"fas fa-play\"></span>\n      </a>\n      <a href=\"#\" class=\"cl-icon-padding\">\n        <span class=\"fas fa-eye-open\"></span>\n      </a>\n\n    </div>\n  </div>\n</nav>\n"
 
 /***/ }),
 
@@ -1535,16 +1535,22 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
 /* harmony import */ var _services_widget_service_client__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../services/widget.service.client */ "./src/app/services/widget.service.client.ts");
 /* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/fesm5/router.js");
+/* harmony import */ var _angular_platform_browser__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @angular/platform-browser */ "./node_modules/@angular/platform-browser/fesm5/platform-browser.js");
+
 
 
 
 
 var WidgetListComponent = /** @class */ (function () {
-    function WidgetListComponent(widgetService, activatedRoute) {
+    function WidgetListComponent(widgetService, activatedRoute, sanitizer) {
         this.widgetService = widgetService;
         this.activatedRoute = activatedRoute;
+        this.sanitizer = sanitizer;
         this.widgets = [{}];
     }
+    WidgetListComponent.prototype.byPass = function (url) {
+        return this.sanitizer.bypassSecurityTrustResourceUrl(url);
+    };
     WidgetListComponent.prototype.ngOnInit = function () {
         var _this = this;
         this.activatedRoute.params.subscribe(function (params) {
@@ -1559,7 +1565,7 @@ var WidgetListComponent = /** @class */ (function () {
             template: __webpack_require__(/*! ./widget-list.component.html */ "./src/app/views/widget/widget-list/widget-list.component.html"),
             styles: [__webpack_require__(/*! ./widget-list.component.css */ "./src/app/views/widget/widget-list/widget-list.component.css")]
         }),
-        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_services_widget_service_client__WEBPACK_IMPORTED_MODULE_2__["WidgetService"], _angular_router__WEBPACK_IMPORTED_MODULE_3__["ActivatedRoute"]])
+        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_services_widget_service_client__WEBPACK_IMPORTED_MODULE_2__["WidgetService"], _angular_router__WEBPACK_IMPORTED_MODULE_3__["ActivatedRoute"], _angular_platform_browser__WEBPACK_IMPORTED_MODULE_4__["DomSanitizer"]])
     ], WidgetListComponent);
     return WidgetListComponent;
 }());

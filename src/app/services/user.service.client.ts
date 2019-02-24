@@ -1,17 +1,20 @@
 import {Injectable} from '@angular/core';
+import {User} from '../models/user.model.client';
 
 @Injectable()
 export class UserService {
-  constructor() {}
+  constructor() {
+  }
+
   users = [
 
-    {_id: '123', username: 'alice', password: 'alice', firstName: 'Alice', lastName: 'Wonder', email: 'alice@alice'},
+    new User( '123',  'alice',  'alice', 'Alice', 'Wonder', 'alice@alice'),
 
-    {_id: '234', username: 'bob', password: 'bob', firstName: 'Bob', lastName: 'Marley', email: 'bob@bob'},
+    new User( '234', 'bob', 'bob', 'Bob', 'Marley', 'bob@bob'),
 
-    {_id: '345', username: 'charly', password: 'charly', firstName: 'Charly', lastName: 'Garcia', email: 'charly@charly'},
+    new User('345', 'charly', 'charly', 'Charly', 'Garcia', 'charly@charly'),
 
-    {_id: '456', username: 'jannunzi', password: 'jannunzi', firstName: 'Jose', lastName: 'Annunzi', email: 'jannunzi@jannunzi'}
+    new User('456', 'jannunzi', 'jannunzi', 'Jose', 'Annunzi', 'jannunzi@jannunzi')
 
   ];
 
@@ -20,6 +23,12 @@ export class UserService {
     this.users.push(user);
 
     return user;
+  }
+
+  findUserByCredential(username: String, password: String) {
+    return this.users.find(function (user) {
+      return user.username === username && user.password === password;
+    });
   }
 
   findUserById(userId: string) {

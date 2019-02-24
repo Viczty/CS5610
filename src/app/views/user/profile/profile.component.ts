@@ -1,26 +1,8 @@
 import {Component, OnInit} from '@angular/core';
 import {ActivatedRoute} from '@angular/router';
 import {UserService} from '../../../services/user.service.client';
+import {User} from '../../../models/user.model.client';
 
-export class User {
-  _id: String;
-  username: String;
-  password: String;
-
-  firstName: String;
-  lastName: String;
-  email: String;
-
-  constructor(_id, username, password, firstName, lastName, email) {
-    this._id = _id;
-    this.username = username;
-    this.password = password;
-    this.firstName = firstName;
-    this.lastName = lastName;
-    this.email = email;
-  }
-
-}
 
 @Component({
   selector: 'app-profile',
@@ -39,6 +21,7 @@ export class ProfileComponent implements OnInit {
     console.log(this.user.username);
     console.log(this.user.firstName);
     console.log(this.user.lastName);
+    this.userService.updateUser(this.user._id, this.user);
   }
 
   ngOnInit() {

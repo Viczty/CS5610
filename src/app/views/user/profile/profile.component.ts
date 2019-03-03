@@ -25,10 +25,16 @@ export class ProfileComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.userService.findUserById('123')
+      .subscribe(data => {
+        console.log('in login comp...');
+        console.log(data);
+        this.user = data;
+      });
+
     this.router.params.subscribe(params => {
       this.user._id = params['uid'];
       console.log('user id: ' + this.user._id);
-      this.user = this.userService.findUserById(params.uid);
     });
   }
 }

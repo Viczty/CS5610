@@ -10,7 +10,7 @@ import {ActivatedRoute, Router} from '@angular/router';
 })
 export class WidgetYoutubeComponent implements OnInit {
 
-  widget: Widget;
+  widget;
   userId: String;
   websiteId: String;
   pageId: String;

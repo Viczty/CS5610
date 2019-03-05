@@ -9,7 +9,7 @@ import {Widget} from '../../../../models/widget.model.client';
   styleUrls: ['./widget-header.component.css']
 })
 export class WidgetHeaderComponent implements OnInit {
-  widget: Widget;
+  widget;
   userId: String;
   websiteId: String;
   pageId: String;

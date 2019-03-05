@@ -3,7 +3,7 @@
   <div class="container-fluid row">
 
     <div class="navbar-text float-left">
-      <a routerLink="/user/123/website/456/page/321/widget" class="cl-text-black cl-icon-padding">
+      <a routerLink="../" class="cl-text-black cl-icon-padding">
           <span class="fas fa-chevron-left">
           </span>
       </a>
@@ -12,7 +12,7 @@
       </a>
     </div>
     <div class="float-right">
-      <a routerLink="/user/123/website/456/page/321/widget" class="cl-icon-padding cl-text-black">
+      <a (click)="updateWidget()" class="cl-icon-padding cl-text-black">
           <span class="fas fa-check">
           </span>
       </a>
@@ -25,29 +25,29 @@
   <form>
     <div class="form-group">
       <label for="youtube-name">Name</label>
-      <input type="text" class="form-control" id="youtube-name" placeholder="Name">
+      <input [(ngModel)]="widget.name" name="name" type="text" class="form-control" id="youtube-name" placeholder="Name">
     </div>
     <div class="form-group">
       <label for="youtube-text">Text</label>
-      <input type="text" class="form-control" id="youtube-text" placeholder="Text">
+      <input [(ngModel)]="widget.text" name="text" type="text" class="form-control" id="youtube-text" placeholder="Text">
     </div>
     <div class="form-group">
       <label for="youtube-URL">URL</label>
-      <input type="text" class="form-control" id="youtube-URL" placeholder="URL">
+      <input [(ngModel)]="widget.url" name="url" type="text" class="form-control" id="youtube-URL" placeholder="URL">
     </div>
     <div class="form-group">
       <label for="youtube-width">Width</label>
-      <input type="text" class="form-control" id="youtube-width" placeholder="100%">
+      <input [(ngModel)]="widget.width" name="width" type="text" class="form-control" id="youtube-width" placeholder="100%">
     </div>
   </form>
-  <a class="btn btn-danger btn-block" routerLink="/user/123/website/456/page/321/widget">Delete</a>
+  <a class="btn btn-danger btn-block" (click)="deleteWidget()">Delete</a>
 </div>
 
 <nav class="navbar navbar-light bg-light fixed-bottom">
   <div class="container-fluid row">
     <div class="float-right">
 
-      <a routerLink="/user/123" class="cl-icon-padding">
+      <a routerLink="/user/{{userId}}" class="cl-icon-padding">
         <span class="fas fa-user"></span>
       </a>
 

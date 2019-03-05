@@ -1,76 +1,35 @@
 import {Injectable} from '@angular/core';
+import {HttpClient} from '@angular/common/http';
+import {environment} from '../../environments/environment';
+import {Widget} from '../models/widget.model.client';
 
 @Injectable()
 export class WidgetService {
-  widgets = [
 
-    {'_id': '123', 'widgetType': 'HEADING', 'pageId': '321', 'size': 2, 'text': 'GIZMODO'},
+  constructor(private _http: HttpClient) {
+  }
 
-    {'_id': '234', 'widgetType': 'HEADING', 'pageId': '321', 'size': 4, 'text': 'Lorem ipsum'},
-
-    {
-      '_id': '345', 'widgetType': 'IMAGE', 'pageId': '321', 'width': '100%',
-
-      'url': 'http://lorempixel.com/400/200/'
-    },
-
-    {'_id': '456', 'widgetType': 'HTML', 'pageId': '321', 'text': '<p>Lorem ipsum</p>'},
-
-    {'_id': '567', 'widgetType': 'HEADING', 'pageId': '321', 'size': 4, 'text': 'Lorem ipsum'},
-
-    {
-      '_id': '678', 'widgetType': 'YOUTUBE', 'pageId': '321', 'width': '100%',
-
-      'url': 'https://www.youtube.com/embed/AM2Ivdi9c4E'
-    },
-
-    {'_id': '789', 'widgetType': 'HTML', 'pageId': '321', 'text': '<p>Lorem ipsum</p>'}
-
-  ];
+  baseUrl = environment.baseUrl;
 
   createWidget(pageId, widget) {
-    widget._id = Math.random();
-    widget.pageId = pageId;
-    this.widgets.push(widget);
-    return widget;
+    return this._http.post<Widget>(this.baseUrl + '/api/page/' + pageId + '/widget', widget);
   }
 
   findWidgetsByPageId(pageId) {
-    let res;
-    res = [];
-    for (let x = 0; x < this.widgets.length; x++) {
-      if (this.widgets[x].pageId === pageId) {
-        res.push(this.widgets[x]);
-      }
-    }
-    return res;
+    return this._http.get<[Widget]>(this.baseUrl + '/api/page/' + pageId + '/widget');
   }
 
   findWidgetById(widgetId) {
-    for (let x = 0; x < this.widgets.length; x++) {
-      if (this.widgets[x]._id === widgetId) {
-        return this.widgets[x];
-      }
-    }
+    return this._http.get<Widget>(this.baseUrl + '/api/widget/' + widgetId);
   }
 
   updateWidget(widgetId, widget) {
-    let index;
-    for (let x = 0; x < this.widgets.length; x++) {
-      if (this.widgets[x]._id === widgetId) {
-        index = x;
-      }
-    }
-    this.widgets[index] = widget;
+    return this._http.put<Widget>(this.baseUrl + '/api/widget/' + widgetId, widget);
+
   }
 
   deleteWidget(widgetId) {
-    let index;
-    for (let x = 0; x < this.widgets.length; x++) {
-      if (this.widgets[x]._id === widgetId) {
-        index = x;
-      }
-    }
-    this.widgets.splice(index, 1);
+    return this._http.delete<Widget>(this.baseUrl + '/api/widget/' + widgetId);
+
   }
 }

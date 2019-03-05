@@ -16,7 +16,7 @@ module.exports = function (app) {
 
   function createUser(req, res) {
     console.log("create user");
-    let user = req.body.user;
+    let user = req.body;
     user._id = Math.round(Math.random() * 1000).toString();
     users.push(user);
     res.send(user);
@@ -70,7 +70,7 @@ module.exports = function (app) {
         index = x;
       }
     }
-    let user = req.body.user;
+    let user = req.body;
     users[index] = user;
     res.send(user);
   }

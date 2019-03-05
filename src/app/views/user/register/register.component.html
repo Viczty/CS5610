@@ -1,17 +1,15 @@
-
 <div class="container">
   <h1>Register</h1>
-  <input type="text"
-         class="form-control"
-         placeholder="username"/>
-  <input type="password"
-         class="form-control"
-         placeholder="password"/>
-  <input type="password"
-         class="form-control"
-         placeholder="verify password"/>
-  <a class="btn btn-primary btn-block"
-     routerLink="/user/123">Register</a>
+  <form (ngSubmit)="register()" #f="ngForm">
+    <input type="text" name="username" placeholder="username" class="form-control" ngModel required #username="ngModel">
+    <input type="password" name="password" placeholder="password" class="form-control" ngModel required
+           #password="ngModel">
+    <input type="password" name="verifyPassword" placeholder="verifyPassword" class="form-control" ngModel required
+           #verifyPassword="ngModel">
+    <button [disabled]="!f.valid || password.value !== verifyPassword.value" class="btn btn-primary btn-block" type="submit">
+      Register
+    </button>
+  </form>
   <a class="btn btn-danger  btn-block"
      routerLink="/login">Cancel</a>
 </div>

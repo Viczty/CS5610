@@ -1,63 +1,36 @@
 import {Injectable} from '@angular/core';
+import {HttpClient} from '@angular/common/http';
+import {environment} from '../../environments/environment';
+import {Page} from '../models/page.model.client';
+
 
 @Injectable()
 export class PageService {
-  constructor() {
+
+  constructor(private _http: HttpClient) {
   }
 
-  pages = [
-
-    {'_id': '321', 'name': 'Post 1', 'websiteId': '456', 'description': 'Lorem'},
-
-    {'_id': '432', 'name': 'Post 2', 'websiteId': '456', 'description': 'Lorem'},
-
-    {'_id': '543', 'name': 'Post 3', 'websiteId': '456', 'description': 'Lorem'}
-
-  ];
+  baseUrl = environment.baseUrl;
 
   createPage(websiteId, page) {
-    page._id = Math.random();
-    page.websiteId = websiteId;
-    this.pages.push(page);
-    return page;
+    return this._http.post<Page>(this.baseUrl + '/api/website/' + websiteId + '/page', page);
   }
 
   findPagesByWebsiteId(websiteId) {
-    let res;
-    res = [];
-    for (let x = 0; x < this.pages.length; x++) {
-      if (this.pages[x].websiteId === websiteId) {
-        res.push(this.pages[x]);
-      }
-    }
-    return res;
+    return this._http.get<[Page]>(this.baseUrl + '/api/website/' + websiteId + '/page');
   }
 
   findPageById(pageId) {
-    for (let x = 0; x < this.pages.length; x++) {
-      if (this.pages[x]._id === pageId) {
-        return this.pages[x];
-      }
-    }
+    return this._http.get<Page>(this.baseUrl + '/api/page/' + pageId);
   }
 
   updatePage(pageId, page) {
-    let index;
-    for (let x = 0; x < this.pages.length; x++) {
-      if (this.pages[x]._id === pageId) {
-        index = x;
-      }
-    }
-    this.pages[index] = page;
+    return this._http.put<Page>(this.baseUrl + '/api/page/' + pageId, page);
+
   }
 
   deletePage(pageId) {
-    let index;
-    for (let x = 0; x < this.pages.length; x++) {
-      if (this.pages[x]._id === pageId) {
-        index = x;
-      }
-    }
-    this.pages.splice(index, 1);
+    return this._http.delete<Page>(this.baseUrl + '/api/page/' + pageId);
+
   }
 }

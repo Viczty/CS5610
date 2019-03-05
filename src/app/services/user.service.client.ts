@@ -11,29 +11,13 @@ export class UserService {
 
   baseUrl = environment.baseUrl;
 
-  users = [
-
-    new User('123', 'alice', 'alice', 'Alice', 'Wonder', 'alice@alice'),
-
-    new User('234', 'bob', 'bob', 'Bob', 'Marley', 'bob@bob'),
-
-    new User('345', 'charly', 'charly', 'Charly', 'Garcia', 'charly@charly'),
-
-    new User('456', 'jannunzi', 'jannunzi', 'Jose', 'Annunzi', 'jannunzi@jannunzi')
-
-  ];
 
   createUser(user: any) {
-    user._id = Math.random();
-    this.users.push(user);
-
-    return user;
+    return this._http.post<User>(this.baseUrl + '/api/user/', user);
   }
 
   findUserByCredential(username: String, password: String) {
-    return this.users.find(function (user) {
-      return user.username === username && user.password === password;
-    });
+    return this._http.get<User>(this.baseUrl + '/api/user/?username=' + username + '&password=' + password);
   }
 
   findUserById(userId: string) {
@@ -41,32 +25,17 @@ export class UserService {
   }
 
   findUserByUsername(username: string) {
-    for (let x = 0; x < this.users.length; x++) {
-      if (this.users[x].username === username) {
-        return this.users[x];
-      }
-    }
+    return this._http.get<User>(this.baseUrl + '/api/user/?username=' + username);
   }
 
 
-  updateUser(userId, user) {
-    let index;
-    for (let x = 0; x < this.users.length; x++) {
-      if (this.users[x]._id === userId) {
-        index = x;
-      }
-    }
-    this.users[index] = user;
+  updateUser(user) {
+    console.log(user);
+    return this._http.put<User>(this.baseUrl + '/api/user/' + user._id, user);
   }
 
   deleteUser(userId) {
-    let index;
-    for (let x = 0; x < this.users.length; x++) {
-      if (this.users[x]._id === userId) {
-        index = x;
-      }
-    }
-    this.users.splice(index, 1);
+    return this._http.delete<User>(this.baseUrl + '/api/user/' + userId);
   }
 
 }

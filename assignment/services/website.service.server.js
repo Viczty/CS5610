@@ -41,7 +41,7 @@ module.exports = function (app) {
   function createWebsite(req, res) {
     console.log("create website");
     let userId = req.params.userId;
-    let website = req.body.website;
+    let website = req.body;
     website._id = Math.round(Math.random() * 1000).toString();
     website.developerId = userId;
     websites.push(website);
@@ -57,7 +57,7 @@ module.exports = function (app) {
         index = x;
       }
     }
-    let website = req.body.website;
+    let website = req.body;
     websites[index] = website;
     res.send(website);
   }

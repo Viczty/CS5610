@@ -19,7 +19,12 @@ export class WebsiteListComponent implements OnInit {
       this.userId = params['uid'];
 
     });
-    this.websites = this.websiteService.findWebsitesByUser(this.userId);
+    this.websiteService.findWebsitesByUser(this.userId)
+      .subscribe(data => {
+        console.log('in website-list comp...');
+        console.log(data);
+        this.websites = data;
+      });
   }
 
 }

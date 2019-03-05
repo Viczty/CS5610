@@ -46,7 +46,7 @@ module.exports = function (app) {
   function createPage(req, res) {
     console.log("create page");
     let websiteId = req.params.websiteId;
-    let page = req.body.page;
+    let page = req.body;
     page._id = Math.round(Math.random() * 1000).toString();
     page.websiteId = websiteId;
     pages.push(page);
@@ -62,7 +62,7 @@ module.exports = function (app) {
         index = x;
       }
     }
-    let page = req.body.page;
+    let page = req.body;
     pages[index] = page;
     res.send(page);
   }

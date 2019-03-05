@@ -1,9 +1,8 @@
-
 <nav class="navbar navbar-light bg-light fixed-top">
   <div class="container-fluid row">
 
     <div class="float-left">
-      <a routerLink="/user/123/website/456/page/321/widget" class="cl-text-black cl-icon-padding">
+      <a routerLink="../" class="cl-text-black cl-icon-padding">
           <span class="fas fa-chevron-left">
           </span>
       </a>
@@ -12,7 +11,7 @@
       </a>
     </div>
     <div class="navbar-text float-right">
-      <a routerLink="/user/123/website/456/page/321/widget" class="cl-icon-padding cl-text-black">
+      <a (click)="updateWidget()" class="cl-icon-padding cl-text-black">
           <span class="fas fa-check">
           </span>
       </a>
@@ -25,34 +24,38 @@
   <form>
     <div class="form-group">
       <label for="image-name">Name</label>
-      <input type="text" class="form-control" id="image-name" placeholder="Name">
+      <input [(ngModel)]="widget.name" name="name" type="text" class="form-control" id="image-name" placeholder="Name">
     </div>
     <div class="form-group">
       <label for="image-text">Text</label>
-      <input type="text" class="form-control" id="image-text" placeholder="Text">
+      <input [(ngModel)]="widget.text" name="text" type="text" class="form-control" id="image-text" placeholder="Text">
     </div>
     <div class="form-group">
       <label for="image-URL">URL</label>
-      <input type="text" class="form-control" id="image-URL" placeholder="URL">
+      <input [(ngModel)]="widget.url" name="url" type="text" class="form-control" id="image-URL" placeholder="URL">
     </div>
     <div class="form-group">
       <label for="image-width">Width</label>
-      <input type="text" class="form-control" id="image-width" placeholder="100%">
-    </div>
-    <div class="form-group">
-      <label for="exampleInputFile">Upload</label>
-      <input type="file" class="form-control" id="exampleInputFile">
+      <input [(ngModel)]="widget.width" name="width" type="text" class="form-control" id="image-width"
+             placeholder="100%">
     </div>
   </form>
-  <a class="btn btn-primary btn-block" href="#">Upload Image</a>
-  <a class="btn btn-danger  btn-block" routerLink="/user/123/website/123/page/321/widget">Delete</a>
+  <form ngNoForm action="{{baseUrl}}/api/upload" method="post" enctype="multipart/form-data">
+    <input name=" " type="file" class="form-control"/>
+    <input name="widgetId" value="{{widget._id}}" style="display: none"/>
+    <input name="websiteId" value="{{websiteId}}" style="display: none"/>
+    <input name="pageId" value="{{pageId}}" style="display: none"/>
+    <input name="userId" value="{{userId}}" style="display: none"/>
+    <button type="submit" class="btn btn-block btn-primary">Upload Image</button>
+  </form>
+  <a class="btn btn-danger  btn-block" (click)="deleteWidget()">Delete</a>
 </div>
 
 <nav class="navbar navbar-light bg-light fixed-bottom">
   <div class="container-fluid row">
     <div class="float-right">
 
-      <a routerLink="/user/123" class="cl-icon-padding">
+      <a routerLink="/user/{{userId}}" class="cl-icon-padding">
         <span class="fas fa-user"></span>
       </a>
 

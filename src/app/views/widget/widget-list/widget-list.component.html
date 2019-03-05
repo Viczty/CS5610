@@ -2,7 +2,7 @@
   <div class="container-fluid row">
 
     <div class="float-left">
-      <a routerLink="/user/123/website/456/page" class="cl-text-black cl-icon-padding">
+      <a routerLink="/user/{{userId}}/website/{{websiteId}}/page" class="cl-text-black cl-icon-padding">
           <span class="fas fa-chevron-left">
           </span>
       </a>
@@ -11,7 +11,7 @@
       </a>
     </div>
     <div class="float-right">
-      <a routerLink="/user/123/website/456/page/321/widget/new" class="cl-icon-padding cl-text-black">
+      <a routerLink="/user/{{userId}}/website/{{websiteId}}/page/{{pageId}}/widget/new" class="cl-icon-padding cl-text-black">
           <span class="fas fa-plus">
           </span>
       </a>
@@ -21,14 +21,14 @@
 </nav>
 
 <div class="container cl-container-padding" *ngFor="let widget of widgets">
-  <div [ngSwitch]="widget['widgetType']">
+  <div [ngSwitch]="widget.widgetType">
     <div class="float-right">
-      <a routerLink="./{{widget['_id']}}" class="float-right">
+      <a routerLink="./{{widget._id}}">
         <span class="fas fa-plus"></span>
       </a>
-      <div *ngSwitchCase="'HEADING'">{{widget['text']}} </div>
-      <div *ngSwitchCase="'YOUTUBE'"> <iframe width="480" height="315" [src]="byPass(widget['url'])"></iframe></div>
-      <div *ngSwitchCase="'IMAGE'"><img class="img-responsive img-rounded widget-images" src="{{widget['url']}}"></div>
+      <div *ngSwitchCase="'HEADING'">{{widget.text}} </div>
+      <div *ngSwitchCase="'YOUTUBE'"> <iframe width="480" height="315" [src]="byPass(widget.url)"></iframe></div>
+      <div *ngSwitchCase="'IMAGE'"><img class="img-responsive img-rounded widget-images" src="{{widget.url}}"></div>
     </div>
   </div>
 
@@ -38,7 +38,7 @@
   <div class="container-fluid row">
     <div class="float-right">
 
-      <a routerLink="/user/123" class="cl-icon-padding">
+      <a routerLink="/user/{{userId}}" class="cl-icon-padding">
         <span class="fas fa-user"></span>
       </a>
 

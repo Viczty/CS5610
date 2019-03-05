@@ -1,19 +1,8 @@
 import {Component, OnInit} from '@angular/core';
 import {ActivatedRoute} from '@angular/router';
 import {WidgetService} from '../../../services/widget.service.client';
+import {Widget} from '../../../models/widget.model.client';
 
-export class Widget {
-  _id: String;
-  widgetType: String;
-  pageId: String;
-
-  constructor(_id, widgetType, pageId) {
-    this._id = _id;
-    this.widgetType = widgetType;
-    this.pageId = pageId;
-  }
-
-}
 
 @Component({
   selector: 'app-widget-edit',
@@ -31,8 +20,13 @@ export class WidgetEditComponent implements OnInit {
     this.router.params.subscribe(params => {
       this.widget._id = params['wgid'];
       console.log('widget id: ' + this.widget._id);
-      this.widget = this.widgetService.findWidgetById(params.wgid);
     });
+    this.widgetService.findWidgetById(this.widget._id)
+      .subscribe(data => {
+        console.log('in widget-edit comp...');
+        console.log(data);
+        this.widget = data;
+      });
   }
 
 }

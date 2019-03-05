@@ -1,21 +1,9 @@
 import {Component, OnInit} from '@angular/core';
 import {ActivatedRoute} from '@angular/router';
+import {Router} from '@angular/router';
 import {WebsiteService} from '../../../services/website.service.client';
+import {Website} from '../../../models/website.model.client';
 
-export class Website {
-  _id: String;
-  name: String;
-  developerId: String;
-  description: String;
-
-  constructor(_id, name, developerId, description) {
-    this._id = _id;
-    this.name = name;
-    this.developerId = developerId;
-    this.description = description;
-  }
-
-}
 
 @Component({
   selector: 'app-website-edit',
@@ -24,23 +12,39 @@ export class Website {
 })
 export class WebsiteEditComponent implements OnInit {
   website: Website;
-
-  constructor(private websiteService: WebsiteService, private router: ActivatedRoute) {
+  userId: String;
+  websites: [{}];
+  constructor(private websiteService: WebsiteService, private router: Router, private activatedRouter: ActivatedRoute) {
     this.website = new Website('123', 'Facebook', '456', 'Lorem');
   }
 
   updateWebsite() {
-    console.log(this.website.name);
-    console.log(this.website.developerId);
-    console.log(this.website.description);
+    this.websiteService.updateWebsite(this.website._id, this.website).subscribe();
+  }
+
+  deleteWebsite() {
+    this.websiteService.deleteWebsite(this.website._id).subscribe(website => {
+      this.router.navigateByUrl('/user/' + this.userId + '/website');
+    });
   }
 
   ngOnInit() {
-    this.router.params.subscribe(params => {
+    this.activatedRouter.params.subscribe(params => {
       this.website._id = params['wid'];
+      this.userId = params['uid'];
       console.log('website id: ' + this.website._id);
-      this.website = this.websiteService.findWebsiteById(params.wid);
     });
+    this.websiteService.findWebsiteById(this.website._id)
+      .subscribe(data => {
+        console.log('in website-edit comp...');
+        console.log(data);
+        this.website = data;
+      });
+    this.websiteService.findWebsitesByUser(this.userId)
+      .subscribe(data => {
+        console.log(data);
+        this.websites = data;
+      });
   }
 
 }

@@ -22,7 +22,7 @@
         <a class="cl-text-white navbar-brand cl-text-bold" href="#">
           Edit Websites
         </a>
-        <a routerLink="/user/123/website" class="navbar-link navbar-text float-right cl-text-white cl-icon-padding">
+        <a (click)="updateWebsite()" class="navbar-link navbar-text float-right cl-text-white cl-icon-padding">
           <span class="fas fa-check"></span>
         </a>
       </div>
@@ -33,21 +33,9 @@
 <div class="row container-fluid">
   <div class="col-sm-4 d-sm-block">
     <ul class="list-group cl-list-group-borderless">
-      <li class="list-group-item cl-list-item-borderless">
-        <a routerLink="/user/123/website/456"><span class="fas fa-cog float-right"></span></a>
-        <a routerLink="/user/123/website/456/page">Blogging App</a>
-      </li>
-      <li class="list-group-item cl-list-item-borderless">
-        <a routerLink="/user/123/website/456"><span class="fas fa-cog float-right"></span></a>
-        <a routerLink="/user/123/website/456/page">Address Book App</a>
-      </li>
-      <li class="list-group-item cl-list-item-borderless">
-        <a routerLink="/user/123/website/456"><span class="fas fa-cog float-right"></span></a>
-        <a routerLink="/user/123/website/456/page">Script Testing App</a>
-      </li>
-      <li class="list-group-item cl-list-item-borderless">
-        <a routerLink="/user/123/website/456"><span class="fas fa-cog float-right"></span></a>
-        <a routerLink="/user/123/website/456/page">Blogger</a>
+      <li class="list-group-item cl-list-item-borderless" *ngFor="let web of websites">
+        <a routerLink="/user/{{userId}}/website/{{web._id}}"><span class="fas fa-cog float-right"></span></a>
+        <a routerLink="/user/{{userId}}/website/{{web._id}}/page">{{web.name}}</a>
       </li>
     </ul>
   </div>
@@ -62,14 +50,14 @@
         <textarea [(ngModel)]="website.description" name="description" id="website-description" class="form-control" rows="5"
                   placeholder="Blog is a blog-publishing service."></textarea>
       </div>
-      <a class="btn btn-danger  btn-block" routerLink="user/123/website">Delete</a>
+      <a class="btn btn-danger  btn-block" (click)="deleteWebsite()">Delete</a>
     </form>
   </div>
 </div>
 
 <nav class="navbar fixed-bottom cl-blue-navbar">
   <div class="container-fuild">
-    <a routerLink="/user/123" class="navbar-link float-right cl-text-white cl-icon-padding">
+    <a routerLink="/user/{{userId}}" class="navbar-link float-right cl-text-white cl-icon-padding">
       <span class="fas fa-user"></span>
     </a>
   </div>

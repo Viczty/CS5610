@@ -32,4 +32,10 @@ export class WidgetService {
     return this._http.delete<Widget>(this.baseUrl + '/api/widget/' + widgetId);
 
   }
+
+  reorderWidgets(startIndex, endIndex, pageId) {
+
+    const url = this.baseUrl + '/api/page/' + pageId + '/widget?start=' + startIndex + '&end=' + endIndex;
+    return this._http.put(url, '');
+  }
 }

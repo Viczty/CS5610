@@ -36,4 +36,12 @@ export class WidgetListComponent implements OnInit {
       });
   }
 
+  // receiving the emitted event
+  reorderWidgets(indexes) {
+    // call widget service function to update widget as per index
+    this.widgetService.reorderWidgets(indexes.startIndex, indexes.endIndex, this.pageId)
+      .subscribe(
+        (data) => console.log(data)
+      );
+  }
 }

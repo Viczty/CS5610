@@ -17,6 +17,12 @@ module.exports = function (app) {
   function createUser(req, res) {
     console.log("create user");
     let user = req.body;
+    for (var i = 0; i < users.length; i++) {
+      if (users[i].username === user["username"]) {
+        res.status(404).send("This username is already exist.");
+        return;
+      }
+    }
     user._id = Math.round(Math.random() * 1000).toString();
     users.push(user);
     res.send(user);

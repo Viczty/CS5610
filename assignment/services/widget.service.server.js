@@ -27,6 +27,9 @@ module.exports = function (app) {
 
   ];
 
+  var multer = require('multer'); // npm install multer --save
+  var upload = multer({dest: __dirname + '/../../src/assets/uploads'});
+
 //website related api
   app.get("/api/widget/:widgetId", findWidgetById);
   app.get("/api/page/:pageId/widget", findAllWidgetsForPage);
@@ -34,6 +37,10 @@ module.exports = function (app) {
   app.put("/api/widget/:widgetId", updateWidget);
   app.delete("/api/widget/:widgetId", deleteWidget);
 
+  app.put("/api/page/:pageId/widget", reorderWidgets);
+
+  //UPLOAD
+  app.post("/api/upload", upload.single('myFile'), uploadImage);
 
   function findWidgetById(req, res) {
 
@@ -100,26 +107,71 @@ module.exports = function (app) {
     res.send(widget);
   }
 
-  var multer = require('multer'); // npm install multer --save
-  var upload = multer({dest: __dirname + '/../../public/uploads'});
-  app.post("/api/upload", upload.single('myFile'), uploadImage);
 
   function uploadImage(req, res) {
-    var widgetId = req.body.widgetId;
-    var width = req.body.width;
-    var myFile = req.file;
     var userId = req.body.userId;
     var websiteId = req.body.websiteId;
     var pageId = req.body.pageId;
+
+
+    var widgetId = req.body.widgetId;
+    var width = req.body.width;
+    var myFile = req.file;
+
+    if (myFile == null) {
+      //res.redirect("https://cs5610-ass1.herokuapp.com/user/website/"+websiteId+"/page/"+pageId+"/widget/"+widgetId);
+      //res.redirect("http://localhost:3200/user/" + userId + "/website/" + websiteId + "/page/" + pageId + "/widget/" + widgetId);
+      return;
+    }
+
+
     var originalname = myFile.originalname; // file name on user's computer
-    var filename = myFile.filename; // new file name in upload folder
-    var path = myFile.path; // full path of uploaded file
-    var destination = myFile.destination; // folder where file is saved to
+    var filename = myFile.filename;     // new file name in upload folder
+    var path = myFile.path;         // full path of uploaded file
+    var destination = myFile.destination;  // folder where file is saved to
     var size = myFile.size;
     var mimetype = myFile.mimetype;
-    widget = findWidgetById(widgetId);
-    widget.url = '/uploads/' + filename;
-    var callbackUrl = "/user/" + userId + "/website/" + websiteId + "/page/";
-    res.redirect(callbackUrl);
+
+
+    var widget = {url: "assets/uploads/" + filename};
+
+    var widget;
+    for (var i = 0; i < widgets.length; i++) {
+      if (widgets[i]._id === widgetId) {
+        widget = widgets[i];
+      }
+    }
+    widget.url = 'uploads/' + filename;
+
+
+    // res.redirect("https://cs5610-ass1.herokuapp.com/user/website/"+websiteId+"/page/"+pageId+"/widget/"+widgetId);
+    // res.redirect("http://localhost:3200/user/" + userId + "/website/" + websiteId + "/page/" + pageId + "/widget/" + widgetId);
   }
+
+  function array_swap(arr, old_index, new_index) {
+    while (old_index < 0) {
+      old_index += arr.length;
+    }
+    while (new_index < 0) {
+      new_index += arr.length;
+    }
+    if (new_index >= arr.length) {
+      var k = new_index - arr.length + 1;
+      while (k--) {
+        arr.push(undefined);
+      }
+    }
+    arr.splice(new_index, 0, arr.splice(old_index, 1)[0]);
+  };
+
+  function reorderWidgets(req, res) {
+
+    var startIndex = parseInt(req.query["start"]);
+    var endIndex = parseInt(req.query["end"]);
+
+    array_swap(widgets, startIndex, endIndex);
+    res.sendStatus(200);
+
+  }
+
 }

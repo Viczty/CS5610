@@ -11,7 +11,8 @@
       </a>
     </div>
     <div class="float-right">
-      <a routerLink="/user/{{userId}}/website/{{websiteId}}/page/{{pageId}}/widget/new" class="cl-icon-padding cl-text-black">
+      <a routerLink="/user/{{userId}}/website/{{websiteId}}/page/{{pageId}}/widget/new"
+         class="cl-icon-padding cl-text-black">
           <span class="fas fa-plus">
           </span>
       </a>
@@ -20,19 +21,49 @@
   </div>
 </nav>
 
-<div class="container cl-container-padding" *ngFor="let widget of widgets">
-  <div [ngSwitch]="widget.widgetType">
-    <div class="float-right">
-      <a routerLink="./{{widget._id}}">
-        <span class="fas fa-plus"></span>
-      </a>
-      <div *ngSwitchCase="'HEADING'">{{widget.text}} </div>
-      <div *ngSwitchCase="'YOUTUBE'"> <iframe width="480" height="315" [src]="byPass(widget.url)"></iframe></div>
-      <div *ngSwitchCase="'IMAGE'"><img class="img-responsive img-rounded widget-images" src="{{widget.url}}"></div>
+<div class="container cl-container-padding" appSortable (newIndexes)="reorderWidgets($event)">
+  <div *ngFor = "let widget of widgets | orderBy">
+    <div [ngSwitch]="widget.widgetType">
+      <div *ngSwitchCase="'HEADING'">
+        <div class="float-right">
+          <a routerLink="/user/{{userId}}/website/{{websiteId}}/page/{{pageId}}/widget/{{widget._id}}">
+            <span class="fa fa-cog"></span>
+          </a>
+        </div>
+        <div [ngSwitch]="widget.size">
+          <h1 *ngSwitchCase="1">{{widget.text}}</h1>
+          <h2 *ngSwitchCase="2">{{widget.text}}</h2>
+          <h3 *ngSwitchCase="3">{{widget.text}}</h3>
+          <h4 *ngSwitchCase="4">{{widget.text}}</h4>
+          <h5 *ngSwitchCase="5">{{widget.text}}</h5>
+          <h6 *ngSwitchCase="6">{{widget.text}}</h6>
+        </div>
+      </div>
+
+      <div *ngSwitchCase="'IMAGE'">
+        <div>
+          <a routerLink="/user/{{userId}}/website/{{websiteId}}/page/{{pageId}}/widget/{{widget._id}}" class="float-right">
+            <span class="fa fa-cog"></span>
+          </a>
+          <img class="img-responsive img-rounded cl-widget-images"
+               src="{{widget.url}}">
+        </div>
+      </div>
+
+      <div *ngSwitchCase="'YOUTUBE'">
+        <div class="embed-responsive embed-responsive-16by9">
+          <a routerLink="/user/{{userId}}/website/{{websiteId}}/page/{{pageId}}/widget/{{widget._id}}" class="float-right sticky-top">
+            <span class="fa fa-cog youtube" ></span>
+          </a>
+          <h1>{{widget.url}}</h1>
+          <iframe width="640" height="360" [src]="widget.url | safe" frameborder="0" allowfullscreen></iframe>
+        </div>
+      </div>
+
     </div>
   </div>
-
 </div>
+
 
 <nav class="navbar navbar-light bg-light fixed-bottom">
   <div class="container-fluid row">

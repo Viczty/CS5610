@@ -41,13 +41,16 @@
     </div>
   </form>
   <form ngNoForm action="{{baseUrl}}/api/upload" method="post" enctype="multipart/form-data">
-    <input name=" " type="file" class="form-control"/>
+    <input name="myFile" type="file" class="form-control"/>
     <input name="widgetId" value="{{widget._id}}" style="display: none"/>
     <input name="websiteId" value="{{websiteId}}" style="display: none"/>
     <input name="pageId" value="{{pageId}}" style="display: none"/>
     <input name="userId" value="{{userId}}" style="display: none"/>
     <button type="submit" class="btn btn-block btn-primary">Upload Image</button>
   </form>
+  <a class="btn btn-primary btn-block "
+
+     [routerLink]="['/user/'+userId+'/website/'+websiteId+'/page/'+pageId+'/widget/'+widget._id+'/flickr']" >Choose From Flickr</a>
   <a class="btn btn-danger  btn-block" (click)="deleteWidget()">Delete</a>
 </div>
 

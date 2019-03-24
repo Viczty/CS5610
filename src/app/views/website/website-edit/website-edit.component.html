@@ -4,22 +4,22 @@
     <div class="col-sm-4 d-none d-sm-block">
       <div class="container-fluid">
         <div class="float-left">
-          <a routerLink="/user/123/website" class="navbar-text navbar-link cl-text-white">
+          <a routerLink="/user/{{userId}}" class="navbar-text navbar-link cl-text-white">
             <span class="fas fa-chevron-left"></span>
           </a>
-          <a class="cl-text-white navbar-brand cl-text-bold" href="#">
+          <a class="cl-text-white navbar-brand cl-text-bold" routerLink="/user/{{userId}}/website">
             Websites
           </a>
         </div>
 
-        <a routerLink="/user/123/website/new" class="navbar-link navbar-text float-right cl-text-white cl-icon-padding">
+        <a routerLink="/user/{{userId}}/website/new" class="navbar-link navbar-text float-right cl-text-white cl-icon-padding">
           <span class="fas fa-plus"></span>
         </a>
       </div>
     </div>
     <div class="col-sm-8 d-none d-sm-block">
       <div class="container-fluid">
-        <a class="cl-text-white navbar-brand cl-text-bold" href="#">
+        <a class="cl-text-white navbar-brand cl-text-bold" routerLink="/user/{{userId}}/website/{{website._id}}">
           Edit Websites
         </a>
         <a (click)="updateWebsite()" class="navbar-link navbar-text float-right cl-text-white cl-icon-padding">

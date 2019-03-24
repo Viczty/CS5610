@@ -1,11 +1,11 @@
 export class Widget {
   _id: String;
-  widgetType: String;
+  type: String;
   pageId: String;
 
-  constructor(_id, widgetType, pageId) {
+  constructor(_id, type, pageId) {
     this._id = _id;
-    this.widgetType = widgetType;
+    this.type = type;
     this.pageId = pageId;
   }
 

@@ -10,6 +10,7 @@ import {Widget} from '../../../models/widget.model.client';
   styleUrls: ['./widget-edit.component.css']
 })
 export class WidgetEditComponent implements OnInit {
+  userId: String;
   widget: Widget;
 
   constructor(private widgetService: WidgetService, private router: ActivatedRoute) {
@@ -18,6 +19,7 @@ export class WidgetEditComponent implements OnInit {
 
   ngOnInit() {
     this.router.params.subscribe(params => {
+      this.userId = params['uid'];
       this.widget._id = params['wgid'];
       console.log('widget id: ' + this.widget._id);
     });

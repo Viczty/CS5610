@@ -2,7 +2,8 @@ import {BrowserModule} from '@angular/platform-browser';
 import {NgModule} from '@angular/core';
 import {FormsModule} from '@angular/forms';
 import {HttpClientModule} from '@angular/common/http';
-// import { QuillModule } from 'ngx-quill';
+// import { QuillEditorModule } from 'ngx-quill-editor';
+
 import { SafePipe } from './views/widget/widget-list/safe-pipe.pipe';
 import { OrderByPipe } from './views/widget/widget-list/order-by-pipe.pipe';
 
@@ -31,6 +32,8 @@ import {SharedService} from './services/shared.service';
 import { FlickrImageSearchComponent } from './views/widget/widget-edit/widget-image/flickr-image-search/flickr-image-search.component';
 import {FlickrService} from './services/flickr.service';
 import {SortableDirective} from '../../assignment/directives/sortable.directive';
+import { WidgetHtmlComponent } from './views/widget/widget-edit/widget-html/widget-html.component';
+import { WidgetTextComponent } from './views/widget/widget-edit/widget-text/widget-text.component';
 
 @NgModule({
   declarations: [
@@ -53,14 +56,16 @@ import {SortableDirective} from '../../assignment/directives/sortable.directive'
     SortableDirective,
     FlickrImageSearchComponent,
     SafePipe,
-    OrderByPipe
+    OrderByPipe,
+    WidgetHtmlComponent,
+    WidgetTextComponent
   ],
   imports: [
     BrowserModule,
     FormsModule,
     AppRoutingModule,
     HttpClientModule,
-    // QuillModule
+    // QuillEditorModule
   ],
   providers: [UserService, WebsiteService, PageService, WidgetService, SharedService, FlickrService],
   bootstrap: [AppComponent]

@@ -1,3 +1,5 @@
+var widgetModel = require('../model/widget/widget.model.server');
+
 module.exports = function (app) {
 
 
@@ -47,25 +49,26 @@ module.exports = function (app) {
     console.log("hit find widget by id...");
 
     let id = req.params.widgetId;
-
-    for (var i in widgets) {
-      if (widgets[i]._id === id) {
-        res.send(widgets[i]);
-        return;
+    widgetModel.findWidgetById(id).exec(
+      function (err, widget) {
+        if (err) {
+          return res.sendStatus(400).send(err);
+        }
+        return res.json(widget);
       }
-    }
-    res.send({});
+    );
   }
 
   function findAllWidgetsForPage(req, res) {
     let id = req.params.pageId;
-    let result = [];
-    for (var i in widgets) {
-      if (widgets[i].pageId === id) {
-        result.push(widgets[i]);
+    widgetModel.findAllWidgetsForPage(id).exec(
+      function (err, widget) {
+        if (err) {
+          return res.sendStatus(400).send(err);
+        }
+        return res.json(widget);
       }
-    }
-    res.send(result);
+    );
   }
 
 
@@ -73,38 +76,47 @@ module.exports = function (app) {
     console.log("create widget");
     let pageId = req.params.pageId;
     let widget = req.body;
-    widget._id = Math.round(Math.random() * 1000).toString();
-    widget.pageId = pageId;
-    widgets.push(widget);
-    res.send(widget);
+    widgetModel
+      .createWidget(pageId, widget)
+      .then(
+        function (widget) {
+          console.log("widget created!");
+          res.json(widget);
+        },
+        function (error) {
+          if (error) {
+            console.log(error);
+            res.statusCode(400).send(error);
+          }
+        }
+      )
   }
 
   function updateWidget(req, res) {
     console.log("update widget");
     let widgetId = req.params.widgetId;
-    let index;
-    for (let x = 0; x < widgets.length; x++) {
-      if (widgets[x]._id === widgetId) {
-        index = x;
-      }
-    }
     let widget = req.body;
-    widgets[index] = widget;
-    res.send(widget);
+    widgetModel.updateWidget(widgetId, widget).exec(
+      function (err, widget) {
+        if (err) {
+          return res.sendStatus(400).send(err);
+        }
+        return res.json(widget);
+      }
+    );
   }
 
   function deleteWidget(req, res) {
     console.log("delete widget");
     let widgetId = req.params.widgetId;
-    let index;
-    for (let x = 0; x < widgets.length; x++) {
-      if (widgets[x]._id === widgetId) {
-        index = x;
+    widgetModel.deleteWidget(widgetId).exec(
+      function (err, widget) {
+        if (err) {
+          return res.sendStatus(400).send(err);
+        }
+        return res.json(widget);
       }
-    }
-    let widget = widgets[index];
-    widgets.splice(index, 1);
-    res.send(widget);
+    );
   }
 
 
@@ -148,20 +160,9 @@ module.exports = function (app) {
     // res.redirect("http://localhost:3200/user/" + userId + "/website/" + websiteId + "/page/" + pageId + "/widget/" + widgetId);
   }
 
-  function array_swap(arr, old_index, new_index) {
-    while (old_index < 0) {
-      old_index += arr.length;
-    }
-    while (new_index < 0) {
-      new_index += arr.length;
-    }
-    if (new_index >= arr.length) {
-      var k = new_index - arr.length + 1;
-      while (k--) {
-        arr.push(undefined);
-      }
-    }
-    arr.splice(new_index, 0, arr.splice(old_index, 1)[0]);
+
+  function array_swap(arr, startIndex, endIndex) {
+    arr.splice(endIndex, 0, arr.splice(startIndex, 1));
   };
 
   function reorderWidgets(req, res) {

@@ -6,7 +6,7 @@
           <span class="fas fa-chevron-left">
           </span>
       </a>
-      <a class="navbar-brand cl-text-white cl-text-bold" href="#">
+      <a class="navbar-brand cl-text-white cl-text-bold">
         Widget Edit
       </a>
     </div>
@@ -16,7 +16,7 @@
 
 <div class="container-fluid cl-container-padding">
   <ul class="list-group cl-list-group-borderless">
-    <li [ngSwitch]="widget.widgetType">
+    <li [ngSwitch]="widget.type">
       <div *ngSwitchCase="'HEADING'">
         <app-widget-header></app-widget-header>
       </div>
@@ -26,15 +26,15 @@
       <div *ngSwitchCase="'YOUTUBE'">
         <app-widget-youtube></app-widget-youtube>
       </div>
+      <div *ngSwitchCase="'HTML'">
+        <app-widget-html></app-widget-html>
+      </div>
+      <div *ngSwitchCase="'TEXT'">
+        <app-widget-text></app-widget-text>
+      </div>
     </li>
     <li class="list-group-item cl-list-item-borderless">
       <a href="#">Label</a>
-    </li>
-    <li class="list-group-item cl-list-item-borderless">
-      <a href="#">HTML</a>
-    </li>
-    <li class="list-group-item cl-list-item-borderless">
-      <a href="#">Text Input</a>
     </li>
     <li class="list-group-item cl-list-item-borderless">
       <a href="#">Link</a>
@@ -55,7 +55,7 @@
   <div class="container-fluid row">
     <div class="float-right">
 
-      <a routerLink="/user/123" class="cl-icon-padding">
+      <a routerLink="/user/{{userId}}" class="cl-icon-padding">
         <span class="fas fa-user"></span>
       </a>
 

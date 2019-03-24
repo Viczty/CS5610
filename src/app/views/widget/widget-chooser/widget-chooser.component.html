@@ -7,7 +7,7 @@
           <span class="fas fa-chevron-left">
           </span>
       </a>
-      <a class="navbar-brand cl-text-white cl-text-bold" href="#">
+      <a class="navbar-brand cl-text-white cl-text-bold" routerLink="./">
         Choose Widget
       </a>
     </div>
@@ -18,16 +18,16 @@
 <div class="container-fluid cl-container-padding">
   <ul class="list-group cl-list-group-borderless">
     <li class="list-group-item cl-list-item-borderless">
-      <a href="#">Header</a>
+      <a (click)="createHeader()">Header</a>
     </li>
     <li class="list-group-item cl-list-item-borderless">
       <a href="#">Label</a>
     </li>
     <li class="list-group-item cl-list-item-borderless">
-      <a href="#">HTML</a>
+      <a (click)="createHtml()">HTML</a>
     </li>
     <li class="list-group-item cl-list-item-borderless">
-      <a href="#">Text Input</a>
+      <a (click)="createText()">Text Input</a>
     </li>
     <li class="list-group-item cl-list-item-borderless">
       <a href="#">Link</a>
@@ -36,10 +36,10 @@
       <a href="#">Button</a>
     </li>
     <li class="list-group-item cl-list-item-borderless">
-      <a href="#">Image</a>
+      <a (click)="createImage()">Image</a>
     </li>
     <li class="list-group-item cl-list-item-borderless">
-      <a href="#">YouTube</a>
+      <a (click)="createYoutube()">YouTube</a>
     </li>
     <li class="list-group-item cl-list-item-borderless">
       <a href="#">Data Table</a>

@@ -29,7 +29,7 @@ server.listen( port , () => console.log('Running on port 3200'));
 
 // mongodb://heroku_zshh7r5k:zty199261@ds221416.mlab.com:21416/heroku_zshh7r5k
 // var connectionString = 'mongodb://127.0.0.1:27017/webdev';
-var connectionString = 'mongodb://heroku_zshh7r5k:zty199261@ds221416.mlab.com:21416/heroku_zshh7r5k';
+var connectionString = 'mongodb://cs5610:cs5610@ds221416.mlab.com:21416/heroku_zshh7r5k';
 
 var mongoose = require("mongoose");
 mongoose.Promise = global.Promise;

@@ -30,8 +30,8 @@ function deserializeUser(user, done) {
 }
 
 function localStrategy(username, password, done) {
-  userModel.findUserByCredential(username, password).then(function (user) {
-    if (user.username === username && user.password === password) {
+  userModel.findUserByUserName(username).then(function (user) {
+    if (user ) {
 
       return done(null, user);
     } else {
@@ -54,7 +54,7 @@ function facebookStrategy(token, refreshToken, profile, done) {
         lastName: names[1],
         firstName: names[0],
         email: profile.emails ? profile.emails[0].value : "",
-        facebook: {id: profile.id, token: token}
+        facebook: {id: profile.id, token: token, displayName: profile.displayName}
       };
       return userModel.createUser(newFacebookUser);
     }
@@ -77,10 +77,11 @@ module.exports = function (app) {
   app.get("/api/user/:userId", findUserById);
   app.get("/api/user", findUserByCredential);
   app.post("/api/login", passport.authenticate('local'), login);
-  // app.get('/facebook/login', passport.authenticate('facebook', {scope: 'email'}, {
-  //   success: login,
-  //   failureRedirect: '/#/login'
-  // }));
+  app.get('/facebook/login', passport.authenticate('facebook', {scope: 'email'}, { failureRedirect: '/login' }),
+    function(req, res) {
+      // Successful authentication, redirect home.
+      res.redirect('/user/:uid');
+    });
   app.post('/api/logout', logout);
   app.post('/api/register', register);
   app.get('/api/loggedin', loggedin);

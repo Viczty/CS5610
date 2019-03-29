@@ -15,6 +15,6 @@ export class FlickrService {
     const url = this.urlBase
       .replace('API_KEY', this.key)
       .replace('TEXT', searchTerm);
-    return this._http.get(url);
+    return this._http.get(url, {responseType: 'text'});
   }
 }

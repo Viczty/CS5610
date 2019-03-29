@@ -27,14 +27,13 @@ export class FlickrImageSearchComponent implements OnInit {
 
     // fetch userId from shared service
     this.userId = this.sharedService.user['_id'];
-
     // fetch userId, pageId and websiteId from url
     this.activatedRoute.params
       .subscribe(
         (params: any) => {
-          this.websiteId = params['websiteId'];
-          this.pageId = params['pageId'];
-          this.widgetId = params['widgetId'];
+          this.websiteId = params['wid'];
+          this.pageId = params['pid'];
+          this.widgetId = params['wgid'];
         }
       );
   }
@@ -44,11 +43,11 @@ export class FlickrImageSearchComponent implements OnInit {
       .searchPhotos(this.searchText)
       .subscribe(
         (data: any) => {
-          let val = data._body;
+          let val = data;
           val = val.replace('jsonFlickrApi(', '');
           val = val.substring(0, val.length - 1);
           val = JSON.parse(val);
-          this.photos = val.photos;
+          this.photos = val.photos.photo;
         }
       );
   }

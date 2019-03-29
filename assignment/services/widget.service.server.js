@@ -30,7 +30,7 @@ module.exports = function (app) {
   ];
 
   var multer = require('multer'); // npm install multer --save
-  var upload = multer({dest: __dirname + '/../../src/assets/uploads'});
+  var upload = multer({dest: __dirname + '/../../dist/my-project/assets/uploads'});
 
 //website related api
   app.get("/api/widget/:widgetId", findWidgetById);

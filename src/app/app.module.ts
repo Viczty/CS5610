@@ -2,7 +2,7 @@ import {BrowserModule} from '@angular/platform-browser';
 import {NgModule} from '@angular/core';
 import {FormsModule} from '@angular/forms';
 import {HttpClientModule} from '@angular/common/http';
-// import { QuillEditorModule } from 'ngx-quill-editor';
+import { QuillEditorModule } from 'ngx-quill-editor';
 
 import { SafePipe } from './views/widget/widget-list/safe-pipe.pipe';
 import { OrderByPipe } from './views/widget/widget-list/order-by-pipe.pipe';
@@ -34,6 +34,7 @@ import {FlickrService} from './services/flickr.service';
 import {SortableDirective} from '../../assignment/directives/sortable.directive';
 import { WidgetHtmlComponent } from './views/widget/widget-edit/widget-html/widget-html.component';
 import { WidgetTextComponent } from './views/widget/widget-edit/widget-text/widget-text.component';
+import {AuthGuard} from './services/auth-guard.service';
 
 @NgModule({
   declarations: [
@@ -65,9 +66,9 @@ import { WidgetTextComponent } from './views/widget/widget-edit/widget-text/widg
     FormsModule,
     AppRoutingModule,
     HttpClientModule,
-    // QuillEditorModule
+    QuillEditorModule
   ],
-  providers: [UserService, WebsiteService, PageService, WidgetService, SharedService, FlickrService],
+  providers: [UserService, WebsiteService, PageService, WidgetService, SharedService, FlickrService, AuthGuard],
   bootstrap: [AppComponent]
 })
 export class AppModule {

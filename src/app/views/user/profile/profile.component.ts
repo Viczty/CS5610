@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {ActivatedRoute} from '@angular/router';
+import {ActivatedRoute, Router} from '@angular/router';
 import {UserService} from '../../../services/user.service.client';
 import {User} from '../../../models/user.model.client';
 
@@ -13,7 +13,7 @@ export class ProfileComponent implements OnInit {
 
   user: User;
 
-  constructor(private userService: UserService, private router: ActivatedRoute) {
+  constructor(private userService: UserService, private activatedRouter: ActivatedRoute, private router: Router) {
     this.user = new User('111', 'alice', 'alice', 'alice', 'alice', 'alice@alice');
   }
 
@@ -23,7 +23,7 @@ export class ProfileComponent implements OnInit {
 
   ngOnInit() {
 
-    this.router.params.subscribe(params => {
+    this.activatedRouter.params.subscribe(params => {
       this.user._id = params['uid'];
       console.log('user id: ' + this.user._id);
     });
@@ -34,5 +34,9 @@ export class ProfileComponent implements OnInit {
         console.log(data);
         this.user = data;
       });
+  }
+
+  logout() {
+    this.userService.logout().subscribe((data: any) => this.router.navigate(['/login']));
   }
 }

@@ -59,7 +59,7 @@
 
       <div *ngSwitchCase="'TEXT'">
         <div *ngIf="widget.formatted">
-          <!--<quill-editor [(ngModel)]="widget.text" name="text"></quill-editor>-->
+          <quill-editor [(ngModel)]="widget.text" name="text"></quill-editor>
         </div>
         <input *ngIf="!widget.formatted && (!widget.rows || widget.rows===1)" placeholder="{{widget.placeholder}}"
                class="form-control"/>

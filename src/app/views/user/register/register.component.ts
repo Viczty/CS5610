@@ -15,6 +15,7 @@ export class RegisterComponent implements OnInit {
   @ViewChild('f') loginForm: NgForm;
 
   user;
+  error;
 
 
   constructor(private userService: UserService, private router: Router) {
@@ -27,12 +28,17 @@ export class RegisterComponent implements OnInit {
 
     this.user = {username: username, password: password};
 
-    this.userService.createUser(this.user)
-      .subscribe((user: User) => {
-        if (user) {
-          this.router.navigate(['/user', user._id]);
-        }
-      });
+    // this.userService.createUser(this.user)
+    //   .subscribe((user: User) => {
+    //     if (user) {
+    //       this.router.navigate(['/user', user._id]);
+    //     }
+    //   });
+    this.userService.register(username, password).subscribe((user: any) => {
+      this.router.navigate(['/user', user._id]);
+    }, (error: any) => {
+      this.error = error._body;
+    });
   }
 
   ngOnInit() {

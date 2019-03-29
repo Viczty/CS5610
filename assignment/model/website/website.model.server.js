@@ -1,3 +1,4 @@
+var userModel = require('../user/user.model.server');
 var mongoose = require('mongoose');
 var websiteSchema = require('./website.schema.server');
 
@@ -22,7 +23,18 @@ function populateWebsites(websites) {
 
 function createWebsite(userId, website) {
   website.userId = userId;
-  return websiteModel.create(website);
+  return websiteModel.create(website).then(
+    function (website) {
+      userModel.findUserById(userId)
+        .then(
+          function (user) {
+            user.websites.push(website);
+            // userModel.updateUser(userId,user);
+          }
+        );
+      return website;
+    }
+  );
 }
 
 function findAllWebsitesForUser(userId) {

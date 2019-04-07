@@ -18,7 +18,7 @@ import {AuthGuard} from './services/auth-guard.service';
 const appRoutes: Routes = [
   {path: 'login', component: LoginComponent},
   {path: 'register', component: RegisterComponent},
-  {path: 'user/:uid', component: ProfileComponent},
+  {path: 'user/:uid', component: ProfileComponent, canActivate: [AuthGuard]},
   {path: 'user/:uid/website', component: WebsiteListComponent},
   {path: 'user/:uid/website/new', component: WebsiteNewComponent},
   {path: 'user/:uid/website/:wid', component: WebsiteEditComponent},
@@ -32,10 +32,11 @@ const appRoutes: Routes = [
 
 ];
 
-@NgModule({
-  imports: [RouterModule.forRoot(appRoutes)],
-  exports: [RouterModule]
-})
-
-export class AppRoutingModule { }
+// @NgModule({
+//   imports: [RouterModule.forRoot(appRoutes)],
+//   exports: [RouterModule]
+// })
+//
+// export class AppRoutingModule { }
+export const AppRoutingModule = RouterModule.forRoot(appRoutes, {useHash: true});
 

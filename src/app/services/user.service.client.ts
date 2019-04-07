@@ -53,16 +53,16 @@ export class UserService {
   }
 
   loggedIn() {
-    return this._http.post(this.baseUrl + '/api/loggedin', '', {withCredentials: true})
-      .subscribe((res) => {
-        const user = res.toString();
-        if (user !== '0') {
-          this.sharedService.user = user;
-          return true;
-        } else {
-          this.router.navigate(['/login']);
-          return false;
-        }
-      });
+    return this._http.get(this.baseUrl + '/api/loggedin', {withCredentials: true});
+      // .subscribe((res: any) => {
+      //   const user = res;
+      //   if (user !== '0') {
+      //     this.sharedService.user = user;
+      //     return true;
+      //   } else {
+      //     this.router.navigate(['/login']);
+      //     return false;
+      //   }
+      // });
   }
 }

@@ -4,83 +4,90 @@ var LocalStrategy = require('passport-local').Strategy;
 var FacebookStrategy = require('passport-facebook').Strategy;
 var bcrypt = require("bcrypt-nodejs");
 
-passport.serializeUser(serializeUser);
-
-function serializeUser(user, done) {
-  done(null, user);
-}
-
-passport.use(new LocalStrategy(localStrategy));
-var facebookConfig = {
-  clientID: process.env.FACEBOOK_CLIENT_ID,
-  clientSecret: process.env.FACEBOOK_CLIENT_SECRET,
-  callbackURL: process.env.FACEBOOK_CALLBACK_URL
-};
-// passport.use(new FacebookStrategy(facebookConfig, facebookStrategy));
-
-
-passport.deserializeUser(deserializeUser);
-
-function deserializeUser(user, done) {
-  userModel.findUserById(user._id).then(function (user) {
-    done(null, user);
-  }, function (err) {
-    done(err, null);
-  });
-}
-
-function localStrategy(username, password, done) {
-  userModel.findUserByUserName(username).then(function (user) {
-    if (user ) {
-
-      return done(null, user);
-    } else {
-      return done(null, false);
-    }
-  }, function (err) {
-    if (err) {
-      return done(err);
-    }
-  });
-}
-
-function facebookStrategy(token, refreshToken, profile, done) {
-  userModel.findUserByFacebookId(profile.id).then(function (user) {
-    if (user) {
-      return done(null, user);
-    } else {
-      var names = profile.displayName.split(" ");
-      var newFacebookUser = {
-        lastName: names[1],
-        firstName: names[0],
-        email: profile.emails ? profile.emails[0].value : "",
-        facebook: {id: profile.id, token: token, displayName: profile.displayName}
-      };
-      return userModel.createUser(newFacebookUser);
-    }
-  }, function (err) {
-    if (err) {
-      return done(err);
-    }
-  }).then(function (user) {
-    return done(null, user);
-  }, function (err) {
-    if (err) {
-      return done(err);
-    }
-  });
-}
 
 module.exports = function (app) {
+  passport.serializeUser(serializeUser);
 
+  function serializeUser(user, done) {
+    done(null, user);
+  }
+
+  passport.deserializeUser(deserializeUser);
+
+  function deserializeUser(user, done) {
+    userModel.findUserById(user._id).then(function (user) {
+      done(null, user);
+    }, function (err) {
+      done(err, null);
+    });
+  }
+
+  passport.use(new LocalStrategy(localStrategy));
+
+
+  function localStrategy(username, password, done) {
+    userModel.findUserByUserName(username, password).then(function (user) {
+      if (user && bcrypt.compareSync(password, user.password)) {
+
+        return done(null, user);
+      } else {
+        return done(null, false);
+      }
+    }, function (err) {
+      if (err) {
+        return done(err);
+      }
+    });
+  }
+
+  var facebookConfig = {
+    clientID: process.env.FACEBOOK_CLIENT_ID,
+    clientSecret: process.env.FACEBOOK_CLIENT_SECRET,
+    callbackURL: process.env.FACEBOOK_CALLBACK_URL
+    // clientID: '822114281477385',
+    // clientSecret: '81ee4e2c03af9260923eda61c3025f01',
+    // callbackURL: '/auth/facebook/callback'
+  };
+
+  passport.use(new FacebookStrategy(facebookConfig, facebookStrategy));
+
+  function facebookStrategy(token, refreshToken, profile, done) {
+    userModel.findUserByFacebookId(profile.id).then(function (user) {
+      if (user) {
+        return done(null, user);
+      } else {
+        var names = profile.displayName.split(" ");
+        var newFacebookUser = {
+          lastName: names[1],
+          firstName: names[0],
+          email: profile.emails ? profile.emails[0].value : "",
+          facebook: {id: profile.id, token: token, displayName: profile.displayName}
+        };
+        return userModel.createUser(newFacebookUser);
+      }
+    }, function (err) {
+      if (err) {
+        return done(err);
+      }
+    })
+    //   .then(function (user) {
+    //   return done(null, user);
+    // }, function (err) {
+    //   if (err) {
+    //     return done(err);
+    //   }
+    // });
+  }
 
   app.get("/api/user/:userId", findUserById);
   app.get("/api/user", findUserByCredential);
   app.post("/api/login", passport.authenticate('local'), login);
-  app.get('/facebook/login', passport.authenticate('facebook', {scope: 'email'}, { failureRedirect: '/login' }),
-    function(req, res) {
+  app.get('/facebook/login', passport.authenticate('facebook', {scope: 'email'}));
+  app.get('/auth/facebook/callback', passport.authenticate('facebook', {failureRedirect: '/#/login'}),
+    function (req, res) {
       // Successful authentication, redirect home.
-      res.redirect('/user/:uid');
+      const uid = req.user._id;
+      res.redirect('/#/user/' + uid);
     });
   app.post('/api/logout', logout);
   app.post('/api/register', register);
